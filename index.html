@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <form action="#" onsubmit="addToList();">
+        <h2>What Do You Want To Do Today?</h2>
+        <textarea required name="task" id="task" cols="30" rows="10" placeholder="I need to..."></textarea>
+        <button type="submit">Add to List</button>
+    </form>
+    <button onclick="clearList();">ClearList</button>
+    <button onclick="displayList();">Refresh</button>
+    <ol id="task-list"></ol>
+</body>
+</html>
