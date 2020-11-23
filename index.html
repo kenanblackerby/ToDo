@@ -8,13 +8,16 @@
     <script src="app.js" defer></script>
 </head>
 <body>
-    <form action="#" onsubmit="addToList();">
+    <form method="POST" onsubmit="return addToTaskList();">
         <h2>What Do You Want To Do Today?</h2>
         <textarea required name="task" id="task" cols="30" rows="10" placeholder="I need to..."></textarea>
         <button type="submit">Add to List</button>
     </form>
     <button onclick="clearList();">ClearList</button>
     <button onclick="displayList();">Refresh</button>
+    <h3>Tasks To Do</h3>
     <ol id="task-list"></ol>
+    <h3>Completed Tasks</h3>
+    <ol id="completed-list"></ol>
 </body>
 </html>
