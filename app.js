@@ -1,4 +1,8 @@
-var taskList = [{msg: 'This is not complete', complete: false}, {msg: 'this is complete', complete: true}];
+const addButton = document.querySelector("#add-button");
+const clearButton = document.querySelector("#clear-button");
+const refreshButton = document.querySelector("#refresh-button");
+
+const taskList = [{msg: 'This is not complete', complete: false}, {msg: 'this is complete', complete: false}];
 
 // Add new item to task list
 function addToTaskList() {
@@ -38,18 +42,26 @@ function displayTasks() {
         if(!task.complete) {
             taskContent +=  `<li>`
                             +   `<p>${task.msg}</p>`
-                            +   `<button onclick="completeTask(${index});">Check</button>`
-                            +   `<button onclick="deleteTask(${index});">X</button>`
+                            +   '<div class="task-buttons">'
+                            +       `<button onclick="completeTask(${index});">Check</button>`
+                            +       `<button onclick="deleteTask(${index});">X</button>`
+                            +   '</div>'
                           + `</li>`;
         } else {
             completeContent +=  `<li>`
                                 +   `<p>${task.msg}</p>`
-                                +   `<button onclick="deleteTask(${index});">X</button>`
+                                +   '<div class="task-buttons">'
+                                +       `<button onclick="deleteTask(${index});">X</button>`
+                                +   '</div>'
                               + `</li>`;
         }
     }
-    document.getElementById('task-list').innerHTML = taskContent;
-    document.getElementById('completed-list').innerHTML = completeContent;
+    document.getElementById('to-do').innerHTML = taskContent;
+    document.getElementById('complete').innerHTML = completeContent;
 }
+
+addButton.addEventListener("click",addToTaskList);
+clearButton.addEventListener("click",clearList);
+refreshButton.addEventListener("click",displayTasks);
 
 displayTasks();

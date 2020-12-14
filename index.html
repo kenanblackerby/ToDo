@@ -5,19 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo App</title>
 
+    <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
 </head>
 <body>
-    <form method="POST" onsubmit="return addToTaskList();">
-        <h2>What Do You Want To Do Today?</h2>
-        <textarea required name="task" id="task" cols="30" rows="10" placeholder="I need to..."></textarea>
-        <button type="submit">Add to List</button>
-    </form>
-    <button onclick="clearList();">ClearList</button>
-    <button onclick="displayList();">Refresh</button>
-    <h3>Tasks To Do</h3>
-    <ol id="task-list"></ol>
-    <h3>Completed Tasks</h3>
-    <ol id="completed-list"></ol>
+    <div class="main-content">
+        <div class="input-form">
+            <h2 class="form-title">
+                What Do You Want To Do Today?
+            </h2>
+            <textarea id="task" cols="30" rows="10" placeholder="I need to..."></textarea>
+            <button id="add-button">Add to List</button>
+            <button id="clear-button">ClearList</button>
+            <button id="refresh-button">Refresh</button>
+        </div>
+        <div class="task-list">
+            <h3>Tasks To Do</h3>
+            <ol id="to-do"></ol>
+        </div>
+        <div class="task-list">
+            <h3>Completed Tasks</h3>
+            <ol id="complete"></ol>
+        </div>
+    </div>
 </body>
 </html>
