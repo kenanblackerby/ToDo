@@ -1,14 +1,21 @@
-const addButton = document.querySelector("#add-button");
-const clearButton = document.querySelector("#clear-button");
-const refreshButton = document.querySelector("#refresh-button");
+// Selectors
+const addButton = document.querySelector('#add-button');
+const clearButton = document.querySelector('#clear-button');
+const toDoList = document.querySelector('#todo-list');
+const completeList = document.querySelector('#complete-list');
+
+addButton.addEventListener("click",addToTaskList);
+clearButton.addEventListener("click",clearList);
 
 const taskList = [{msg: 'This is not complete', complete: false}, {msg: 'this is complete', complete: false}];
+
+
+displayTasks();
 
 // Add new item to task list
 function addToTaskList() {
     const textArea = document.querySelector("#task");
     const task = textArea.value;
-    textArea.value = '';
     taskList.push({msg: task, complete: false});
     displayTasks();
     return false;
@@ -32,7 +39,7 @@ function deleteTask(taskIndex) {
     displayTasks();
 }
 
-// Display all incomplete tasks in list
+// Display all tasks in list
 function displayTasks() {
     let taskContent = '';
     let completeContent = '';
@@ -56,12 +63,6 @@ function displayTasks() {
                               + `</li>`;
         }
     }
-    document.getElementById('to-do').innerHTML = taskContent;
-    document.getElementById('complete').innerHTML = completeContent;
+    toDoList.innerHTML = taskContent;
+    completeList.innerHTML = completeContent;
 }
-
-addButton.addEventListener("click",addToTaskList);
-clearButton.addEventListener("click",clearList);
-refreshButton.addEventListener("click",displayTasks);
-
-displayTasks();
