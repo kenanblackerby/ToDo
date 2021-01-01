@@ -4,29 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo App</title>
-
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
 </head>
 <body>
-    <div class="main-content">
-        <div class="input-form">
-            <h2 class="form-title">
-                What Do You Want To Do Today?
-            </h2>
-            <textarea id="task" cols="30" rows="10" placeholder="I need to..."></textarea>
-            <button id="add-button">Add to List</button>
-            <button id="clear-button">ClearList</button>
-            <button id="refresh-button">Refresh</button>
+    <header>
+        <h1>To-Do List</h1>
+        <h2>What Do You Want Get Done Today?</h2>
+    </header>    
+    <form>
+        <div class="add-container">
+        	<textarea id="task" placeholder="I need to..."></textarea>
+        	<button id="add-button" type="submit"><i class="fas fa-plus"></i></button>
         </div>
-        <div class="task-list">
-            <h3>Tasks To Do</h3>
-            <ol id="to-do"></ol>
-        </div>
-        <div class="task-list">
-            <h3>Completed Tasks</h3>
-            <ol id="complete"></ol>
-        </div>
+        <button id="clear-button" type="reset">Remove All Tasks</button>
+    </form>
+    
+    <div class="task-container">
+        <h3>Tasks To Do</h3>
+        <ol id="todo-list" class="list"></ol>
+    </div>
+    <div class="task-container">
+        <h3>Completed Tasks</h3>
+        <ol id="complete-list" class="list"></ol>
     </div>
 </body>
 </html>
