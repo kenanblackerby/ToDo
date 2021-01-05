@@ -1,68 +1,60 @@
 // Selectors
+const todoInput = document.querySelector('#todo-text');
 const addButton = document.querySelector('#add-button');
 const clearButton = document.querySelector('#clear-button');
-const toDoList = document.querySelector('#todo-list');
+const todoList = document.querySelector('#todo-list');
 const completeList = document.querySelector('#complete-list');
 
-addButton.addEventListener("click",addToTaskList);
-clearButton.addEventListener("click",clearList);
+// Event Listeners
+addButton.addEventListener('click', addTodo);
+// todoInput.addEventListener('beforeinput', e => {
+//     if (e.data === null) {
+//         e.preventDefault();
+//         addButton.click();
+//     }
+// });
+clearButton.addEventListener('click', clearList);
 
-const taskList = [{msg: 'This is not complete', complete: false}, {msg: 'this is complete', complete: false}];
-
-
-displayTasks();
+// Functions
 
 // Add new item to task list
-function addToTaskList() {
-    const textArea = document.querySelector("#task");
-    const task = textArea.value;
-    taskList.push({msg: task, complete: false});
-    displayTasks();
-    return false;
+function addTodo() {
+    // Todo DIV
+    const todoDiv = document.createElement('div');
+    todoDiv.classList.add('todo');
+    // Create LI
+    const newTodo = document.createElement('li');
+    newTodo.innerHTML = todoInput.value;
+    newTodo.classList.add('todo-item');
+    todoDiv.appendChild(newTodo);
+    // Checkmark BUTTON
+    const completeBtn = document.createElement('button');
+    completeBtn.innerHTML = '<i class="fas fa-check"></i>';
+    completeBtn.classList.add('complete-btn');
+    completeBtn.addEventListener('click', checkItem);
+    todoDiv.appendChild(completeBtn);
+    // Delete BUTTON
+    const deleteBtn = document.createElement('button');
+    deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.addEventListener('click', deleteItem);
+    todoDiv.appendChild(deleteBtn);
+    // Add Todo to list
+    todoList.appendChild(todoDiv);
+    // Clear Todo Text Area
+    todoInput.value = '';
 }
 
 // Clear all tasks from list
 function clearList() {
-    taskList = [];
-    displayTasks();
 }
 
-// Mark task as complete
-function completeTask(taskIndex) {
-    taskList[taskIndex].complete = true;
-    displayTasks();
+function deleteItem(e) {
+    const item = e.currentTarget.parentElement;
+    item.remove();
 }
 
-// Remove task from list
-function deleteTask(taskIndex) {
-    taskList.splice(taskIndex,1);
-    displayTasks();
-}
-
-// Display all tasks in list
-function displayTasks() {
-    let taskContent = '';
-    let completeContent = '';
-    
-    for (let index = 0; index < taskList.length; index++) {
-        const task = taskList[index];
-        if(!task.complete) {
-            taskContent +=  `<li>`
-                            +   `<p>${task.msg}</p>`
-                            +   '<div class="task-buttons">'
-                            +       `<button onclick="completeTask(${index});">Check</button>`
-                            +       `<button onclick="deleteTask(${index});">X</button>`
-                            +   '</div>'
-                          + `</li>`;
-        } else {
-            completeContent +=  `<li>`
-                                +   `<p>${task.msg}</p>`
-                                +   '<div class="task-buttons">'
-                                +       `<button onclick="deleteTask(${index});">X</button>`
-                                +   '</div>'
-                              + `</li>`;
-        }
-    }
-    toDoList.innerHTML = taskContent;
-    completeList.innerHTML = completeContent;
+function checkItem(e) {
+    const item = e.currentTarget.parentElement;
+    item.classList.toggle('completed');
 }
