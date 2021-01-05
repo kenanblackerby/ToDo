@@ -4,6 +4,7 @@ const addButton = document.querySelector('#add-button');
 const clearButton = document.querySelector('#clear-button');
 const todoList = document.querySelector('#todo-list');
 const completeList = document.querySelector('#complete-list');
+const filter = document.querySelector('#filter-todo');
 
 // Event Listeners
 addButton.addEventListener('click', addTodo);
@@ -14,6 +15,7 @@ addButton.addEventListener('click', addTodo);
 //     }
 // });
 clearButton.addEventListener('click', clearList);
+filter.addEventListener('click', filterTodos);
 
 // Functions
 
@@ -57,4 +59,29 @@ function deleteItem(e) {
 function checkItem(e) {
     const item = e.currentTarget.parentElement;
     item.classList.toggle('completed');
+}
+
+function filterTodos(e) {
+    const todos = todoList.childNodes;
+    todos.forEach(function(todo) { 
+        switch(e.target.value) {
+            case 'all':
+                todo.classList.remove('hidden');
+                break;
+            case 'complete':
+                if (todo.classList.contains('completed')) {
+                    todo.classList.remove('hidden');
+                } else {
+                    todo.classList.add('hidden');
+                }
+                break;
+            case 'incomplete':
+                if (todo.classList.contains('completed')) {
+                    todo.classList.add('hidden');
+                } else {
+                    todo.classList.remove('hidden');
+                }
+                break;
+        }
+    })
 }
