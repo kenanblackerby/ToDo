@@ -40,6 +40,7 @@ function deleteItem(e) {
 function checkItem(e) {
     const item = e.currentTarget.parentElement;
     item.classList.toggle('complete');
+    checkLocalTodo(item);
 }
 
 function filterTodos(e) {
@@ -78,6 +79,13 @@ function deleteLocalTodo (todo) {
     const index = Array(...todo.parentNode.childNodes).indexOf(todo);
     let todos = getStoredTodos();
     todos.splice(index, 1);
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function checkLocalTodo (todo) {
+    const index = Array(...todo.parentNode.childNodes).indexOf(todo);
+    let todos = getStoredTodos();
+    todos[index].complete = true;
     localStorage.setItem('todos', JSON.stringify(todos));
 }
 
