@@ -10,7 +10,7 @@ const filter = document.querySelector('#filter-todo');
 addButton.addEventListener('click', addTodo);
 clearButton.addEventListener('click', clearList);
 filter.addEventListener('click', filterTodos);
-document.addEventListener('DOMContentLoaded', getStoredTodos);
+document.addEventListener('DOMContentLoaded', renderStoredTodos);
 
 // Functions
 
@@ -32,17 +32,14 @@ function clearList() {
 }
 
 function deleteItem(e) {
-    const itemEl = e.currentTarget.parentElement;
-    const todo = itemEl.children[0].innerText;
-    let todos = JSON.parse(localStorage.getItem('todos'));
-    todos.splice(todos.indexOf(todo), 1);
-    localStorage.setItem('todos', JSON.stringify(todos));
-    itemEl.remove();
+    const item = e.currentTarget.parentElement;
+    deleteLocalTodo(item);
+    item.remove();
 }
 
 function checkItem(e) {
     const item = e.currentTarget.parentElement;
-    item.classList.toggle('completed');
+    item.classList.toggle('complete');
 }
 
 function filterTodos(e) {
@@ -70,23 +67,36 @@ function filterTodos(e) {
     })
 }
 
-function savelocalTodo (todo) {
-    let todos = [];
-    if (localStorage.getItem('todos') !== null) {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
+function savelocalTodo (todoText) {
+    let todos = getStoredTodos();
+    let todo = {text:todoText, complete:false};
     todos.push(todo);
     localStorage.setItem('todos', JSON.stringify(todos));
 }
 
-function getStoredTodos () {
-    let todos = [];
-    if (localStorage.getItem('todos') !== null) {
-        todos = JSON.parse(localStorage.getItem('todos'));
-    }
+function deleteLocalTodo (todo) {
+    const index = Array(...todo.parentNode.childNodes).indexOf(todo);
+    let todos = getStoredTodos();
+    todos.splice(index, 1);
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function renderStoredTodos () {
+    let todos = getStoredTodos();
     todos.forEach(todo => {
-        todoList.appendChild(constructTodoItem(todo));
+        const todoEl = constructTodoItem(todo.text);
+        if (todo.complete) {
+            todoEl.classList.add('complete');
+        }
+        todoList.appendChild(todoEl);
     })
+}
+
+function getStoredTodos () {
+    if (localStorage.getItem('todos') !== null) {
+        return JSON.parse(localStorage.getItem('todos'));
+    }
+    return [];
 }
 
 function constructTodoItem (todoText) {
