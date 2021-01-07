@@ -50,14 +50,14 @@ function filterTodos(e) {
                 todo.classList.remove('hidden');
                 break;
             case 'complete':
-                if (todo.classList.contains('completed')) {
+                if (todo.classList.contains('complete')) {
                     todo.classList.remove('hidden');
                 } else {
                     todo.classList.add('hidden');
                 }
                 break;
             case 'incomplete':
-                if (todo.classList.contains('completed')) {
+                if (todo.classList.contains('complete')) {
                     todo.classList.add('hidden');
                 } else {
                     todo.classList.remove('hidden');
