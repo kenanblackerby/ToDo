@@ -1,18 +1,39 @@
  /*** Globals & Resets ***/
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: #123d7e;
+    background-color: #0f346d;
     background: linear-gradient(160deg, #4d9ee0, 30%, #06295f) fixed;
     font-family: 'Roboto', sans-serif;
+    line-height: 1.5;
 }
 
+
+/*** Navbar ***/
+.bar {
+    display: flex;
+    width: 100%;
+    background: black;
+    font-family: 'Lato', sans-serif;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+nav a {
+    padding: 0.75em 1.5em;
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+}
+
+nav a:hover {
+    background: #ccc;
+    color: black;
+}
 
 /*** Header & Input Form ***/
 header {
