@@ -3,7 +3,6 @@ const todoInput = document.querySelector('#todo-text');
 const addButton = document.querySelector('#add-button');
 const clearButton = document.querySelector('#clear-button');
 const todoList = document.querySelector('#todo-list');
-const completeList = document.querySelector('#complete-list');
 const filter = document.querySelector('#filter-todo');
 
 // Event Listeners
