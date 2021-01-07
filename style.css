@@ -16,7 +16,7 @@ body {
 
 
 /*** Navbar ***/
-.bar {
+nav {
     display: flex;
     width: 100%;
     background: black;
