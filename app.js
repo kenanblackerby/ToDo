@@ -115,18 +115,22 @@ function constructTodoItem (todoText) {
     newTodo.innerHTML = todoText;
     newTodo.classList.add('todo-item');
     todoDiv.appendChild(newTodo);
+    // Button DIV
+    const buttonDiv = document.createElement('div');
+    buttonDiv.classList.add('todo-buttons');
+    todoDiv.appendChild(buttonDiv);
     // Checkmark BUTTON
     const completeBtn = document.createElement('button');
     completeBtn.innerHTML = '<i class="fas fa-check"></i>';
     completeBtn.classList.add('complete-btn');
     completeBtn.addEventListener('click', checkItem);
-    todoDiv.appendChild(completeBtn);
+    buttonDiv.appendChild(completeBtn);
     // Delete BUTTON
     const deleteBtn = document.createElement('button');
     deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
     deleteBtn.classList.add('delete-btn');
     deleteBtn.addEventListener('click', deleteItem);
-    todoDiv.appendChild(deleteBtn);
+    buttonDiv.appendChild(deleteBtn);
     
     return todoDiv;
 }
