@@ -31,13 +31,13 @@ function clearList() {
 }
 
 function deleteItem(e) {
-    const item = e.currentTarget.parentElement;
+    const item = e.currentTarget.closest('.todo');
     deleteLocalTodo(item);
     item.remove();
 }
 
 function checkItem(e) {
-    const item = e.currentTarget.parentElement;
+    const item = e.currentTarget.closest('.todo');
     item.classList.toggle('complete');
     checkLocalTodo(item);
 }
